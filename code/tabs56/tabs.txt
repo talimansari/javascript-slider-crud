@@ -1,0 +1,5 @@
+ $(".tab-switcher").click(function(ev){
+      ev.preventDefault();
+      $(".tab-switcher").not(this).removeClass('active');
+      $(this).addClass("active");
+    });
