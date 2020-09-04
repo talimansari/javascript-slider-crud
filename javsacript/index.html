@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Javascript Examples</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <style type="text/css">
+   img{
+    max-width: 100%;
+   }
+   ul{
+    padding: 0;
+    margin: 0;
+   }
+      .showSlide {  
+            display: none  
+        }  
+         .showSlide img {  
+                width: 100%;  
+                height:350px;
+         }  
+        .image-slider-wrapper {
+             position: relative;
+        }
+         
+        .left, .right {  
+            cursor: pointer;  
+            position: absolute;  
+            top: 50%;  
+            width: auto;  
+            padding: 16px;  
+            margin-top: -22px;  
+            color: white;  
+            font-weight: bold;  
+            font-size: 18px;  
+            transition: 0.6s ease;  
+            border-radius: 0 3px 3px 0;  
+        }  
+         .left{
+          left:0;
+         }
+
+        .right {  
+            right: 0;  
+            border-radius: 3px 0 0 3px;  
+        }  
+            .left:hover, .right:hover {  
+                background-color: rgba(115, 115, 115, 0.8);  
+            }  
+         
+        .active {  
+            background-color: #717171;  
+        }  
+        /* Fading animation */  
+        .fading {  
+            -webkit-animation-name: fading;  
+            -webkit-animation-duration: 1.5s;  
+            animation-name: fading;  
+            animation-duration: 1.5s;  
+        }  
+        @-webkit-keyframes fading {  
+            from {  
+                opacity: .4  
+            }  
+            to {  
+                opacity: 1  
+            }  
+        }  
+  
+        @keyframes fading {  
+            from {  
+                opacity: .4  
+            }  
+            to {  
+                opacity: 1  
+            }  
+        }  
+   li{list-style-type: none;}
+ </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+  <a class="navbar-brand" href="#">SCRIPT - JAVA</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">+</span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link text-danger" href="#"><b>Home</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-danger" href="#"><b>Link</b></a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+<section class="start-code pt-5 text-center">
+  <div class="container">
+    <div class="image-slider-wrapper">
+      <ul class="image-slider">
+        <li class="showSlide fading"><img src="images/img1.jpg" alt=" image1"></li>
+        <li class="showSlide  fading"><img src="images/img2.jpg" alt="image2"></li>
+        <li class="showSlide  fading"><img src="images/img3.jpg" alt="image3"></li>
+      </ul>
+       <!-- navigation button -->
+    <span  class="left" onclick="nextSlide(-1)"><</span>
+    <span  class="right" onclick="nextSlide(1)">></span>
+    </div>
+  </div>
+</section>
+<!-- --crud--section -->
+<section class="crud-section pt-5">
+  <div class="container">
+   <div class="row">
+     <div class="col-md-4">
+       <div class="add-user-wrapper">
+         <h2 class="bg-dark text-white p-3">ADD USER</h2>
+         <form id="addUser" action="">
+         <ul class="form-group" onsubmit="return false;">
+           <li><input type="text" placeholder="Name" id="name"class="form-control mb-2"></li>
+           <li><input type="text" placeholder="Address" id="address" class="form-control mb-2"></li>
+           <li><input type="number" placeholder="Age" id="age"class="form-control mb-2"></li>
+           <li><input type="button" value="Submit" id="submit" onclick="plusUser()" class="form-control mb-2 bg-primary text-white"></li>
+         </ul>
+       </form>
+       </div>
+     </div>
+     <div class="col-md-8">
+       <div class="users-wrapper">
+         <h2 class="bg-dark text-white p-3"> USERS</h2>
+         <table class="table table-striped" id="table-content">
+           <tr>
+             <th>Name</th>
+             <th>Address</th>
+             <th>Age</th>
+             <th></th>
+             <th></th>
+           </tr>
+           <tr>
+             <td>Billu</td>
+             <td>Rohtak</td>
+             <td>24</td>
+             <td><button class="btn btn-success form-control" id="edit">EDIT</button></td>
+             <td><button class="btn btn-danger form-control" id="delete">DELETE</button></td>
+           </tr>
+         </table>
+        </div>
+     </div>
+   </div>
+  </div>
+</section>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+ //crud
+
+
+function plusUser()
+{
+var name = document.getElementById("name").value
+var address = document.getElementById("address").value
+var age = document.getElementById("age").value
+var addUser = [name, address, age];
+for (i = 0; i < 1; i++) {
+   document.getElementById("table-content").innerHTML += "<tr><td>"+name+"</td><td>"+address+"</td><td>"+age+"</td><td><button class='btn btn-success form-control'>EDIT</button></td><td><button class='btn btn-danger form-control'  onclick= "updateUser()">DELETE</button></td></tr>";
+}
+document.getElementById("addUser").reset();
+}
+function updateUser() {
+ document.getElementsByClassName('table').deleteRow(0);
+}
+
+// slider
+ var slide_index = 1;
+
+  displaySlides(slide_index);
+
+  function nextSlide(n) {
+    displaySlides(slide_index += n); 
+  }
+  function currentSlide(n){
+    displaySlides(slide_index = n);
+  }
+  function displaySlides(n){
+    var i;
+    var slides = document.getElementsByClassName("showSlide");
+    if (n > slides.length) {slide_index = 1}
+
+      if(n < 1) {slide_index = slides.length}
+        for ( i = 0; i < slides.length; i++ ){
+          slides[i].style.display = "none";
+        }
+           slides[slide_index - 1].style.display = "block";  
+  }
+  </script>
+</body>
+</html>
